@@ -1,3 +1,7 @@
+<p align="center" width="100%">
+  <img src="https://github.com/linuxct/PhoneAccountDetector/blob/main/app/src/main/res/mipmap-xxxhdpi/ic_launcher_round.png?raw=true" alt="logo"></img><br/>
+</p>
+
 # PhoneAccount Abuse Detector<br/> [![Latest Version](https://img.shields.io/github/v/release/linuxct/PhoneAccountDetector)](https://github.com/linuxct/PhoneAccountDetector/releases/latest) ![Compatibility](https://img.shields.io/badge/compat-API%2029%2B-brightgreen)
 
 **Simple application to enumerate and detect any application that (ab)uses adding an indefinite amount of PhoneAccount(s) to Android's TelecomManager.**  
