@@ -20,6 +20,15 @@ READ_PHONE_STATE is used in all supported Android versions, whereas READ_PHONE_N
 
 No permission is (ab)used to log, collect or process any personally identifiable user information.
 
+## Download
+
+<p align="center">
+  <a href="https://github.com/linuxct/PhoneAccountDetector/releases/latest/download/app-release.apk">
+    <img src="https://i.imgur.com/eKVKAIk.png" alt="Download button"></img><br/>
+    Click here to download the latest version
+  </a>
+</p>
+
 ## Application usage
 
 The application is very simple, and contains 2 components:
@@ -32,15 +41,6 @@ The application is very simple, and contains 2 components:
     <img src="https://i.imgur.com/IJYA3oo.png" alt="Watch on YouTube"></img>
   </a><br/>
   (Thanks to <a href="https://www.youtube.com/c/AndroidExplainedTips">Explaining Android</a> for the video)
-</p>
-
-## Download
-
-<p align="center">
-  <a href="https://github.com/linuxct/PhoneAccountDetector/releases/latest/download/app-release.apk">
-    <img src="https://i.imgur.com/eKVKAIk.png" alt="Download button"></img><br/>
-    Click here to download the latest version
-  </a>
 </p>
 
 ## Screenshots
