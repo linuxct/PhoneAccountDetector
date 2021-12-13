@@ -28,8 +28,11 @@ No permission is (ab)used to log, collect or process any personally identifiable
 
 ## Download
 
-<p style="font-size:10px">
-  <b><a href="https://github.com/linuxct/PhoneAccountDetector/releases/latest/download/app-release.apk">Click here to download the latest version</a></b>.
+<p align="center">
+  <a href="https://github.com/linuxct/PhoneAccountDetector/releases/latest/download/app-release.apk">
+    <img src="https://i.imgur.com/eKVKAIk.png" alt="Download button"></img><br/>
+    Click here to download the latest version
+  </a>
 </p>
 
 ## Screenshots
