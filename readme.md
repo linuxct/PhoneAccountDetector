@@ -28,7 +28,7 @@ The application is very simple, and contains 2 components:
 <br/>
 <p align="center">
   Check this video if you have doubts on how to interpret this data:<br/><br/>
-  <a href="https://www.youtube.com/embed/MT9Xs01Zwa0?ecver=1&autoplay=1&cc_load_policy=1&iv_load_policy=3&rel=0&yt:stretch=16:9&autohide=1&color=red">
+  <a target="_blank" href="https://www.youtube.com/embed/MT9Xs01Zwa0?ecver=1&autoplay=1&cc_load_policy=1&iv_load_policy=3&rel=0&yt:stretch=16:9&autohide=1&color=red">
     <img src="https://i.imgur.com/IJYA3oo.png" alt="Watch on YouTube"></img>
   </a><br/>
   (Thanks to <a href="https://www.youtube.com/c/AndroidExplainedTips">Explaining Android</a> for the video)
