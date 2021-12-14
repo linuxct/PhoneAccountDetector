@@ -17,24 +17,34 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 
 class MainActivity : AppCompatActivity() {
+    private lateinit var tvStatus: TextView
+    private lateinit var tvDetails: TextView
+    private lateinit var icWarning: ImageView
+    private lateinit var icCheckmark: ImageView
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        tvStatus = findViewById(R.id.tvStatus)
+        tvDetails = findViewById(R.id.tvDetails)
+        icWarning = findViewById(R.id.icWarning)
+        icCheckmark = findViewById(R.id.icCheckmark)
 
         if (Build.VERSION.SDK_INT < 31){
             //use ReadPhoneState only
             if (arePermissionsGrantedOrRequest(arrayOf(Manifest.permission.READ_PHONE_STATE))){
-                checkStatusAndUpdateView()
+                isAndroidVersionUnsupportedOrCheckStatusAndUpdateView()
             }
         } else {
             //Android 12 requires ReadPhoneState and ReadPhoneNumbers
             if (arePermissionsGrantedOrRequest(arrayOf(Manifest.permission.READ_PHONE_STATE,
                     Manifest.permission.READ_PHONE_NUMBERS))){
-                checkStatusAndUpdateView()
+                isAndroidVersionUnsupportedOrCheckStatusAndUpdateView()
             }
         }
     }
@@ -58,19 +68,34 @@ class MainActivity : AppCompatActivity() {
         if (grantResults.isNotEmpty()
             && grantResults[0] == PackageManager.PERMISSION_GRANTED
         ) {
-            checkStatusAndUpdateView()
+            isAndroidVersionUnsupportedOrCheckStatusAndUpdateView()
         } else {
             Toast.makeText(applicationContext, "You need to grant the permission\nin order to check the list of apps using PhoneAccounts", Toast.LENGTH_LONG).show()
             finish()
         }
     }
 
-    @SuppressLint("MissingPermission")
-    private fun checkStatusAndUpdateView(){
-        val tvStatus = findViewById<TextView>(R.id.tvStatus)
-        val tvDetails = findViewById<TextView>(R.id.tvDetails)
-        val telecomManager = applicationContext.getSystemService(Context.TELECOM_SERVICE) as TelecomManager
+    private fun isAndroidVersionUnsupportedOrCheckStatusAndUpdateView(){
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.P){
+            updateViewAsUnsupported()
+        } else {
+            checkStatusAndUpdateView()
+        }
+    }
 
+    private fun updateViewAsUnsupported() {
+        icCheckmark.visibility = View.VISIBLE
+        icWarning.visibility = View.INVISIBLE
+        val spannable = SpannableString("Your device is running an old version of Android that is not vulnerable to this bug.")
+        spannable.setSpan(StyleSpan(Typeface.BOLD), 0, 83, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+        tvStatus.text = spannable
+        tvDetails.text = ""
+    }
+
+    @SuppressLint("MissingPermission")
+    @RequiresApi(Build.VERSION_CODES.P)
+    private fun checkStatusAndUpdateView(){
+        val telecomManager = applicationContext.getSystemService(Context.TELECOM_SERVICE) as TelecomManager
         var dangerousAmountOfPhoneAccountsForPackage = false
         var resultDetails = ""
         val accountHandleCollection = mutableListOf<PhoneAccountHandle>()
@@ -96,14 +121,14 @@ class MainActivity : AppCompatActivity() {
         }
 
         if (dangerousAmountOfPhoneAccountsForPackage) {
-            findViewById<ImageView>(R.id.icWarning).visibility = View.VISIBLE
-            findViewById<ImageView>(R.id.icCheckmark).visibility = View.INVISIBLE
+            icWarning.visibility = View.VISIBLE
+            icCheckmark.visibility = View.INVISIBLE
             val spannable = SpannableString("At least an application may be abusing the PhoneAccounts bug. Please check below for details.")
             spannable.setSpan(StyleSpan(Typeface.BOLD), 0, 60, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
             tvStatus.text = spannable
         } else {
-            findViewById<ImageView>(R.id.icCheckmark).visibility = View.VISIBLE
-            findViewById<ImageView>(R.id.icWarning).visibility = View.INVISIBLE
+            icCheckmark.visibility = View.VISIBLE
+            icWarning.visibility = View.INVISIBLE
             val spannable = SpannableString("No apps abusing the PhoneAccounts bug were found. Please check below for details.")
             spannable.setSpan(StyleSpan(Typeface.BOLD), 0, 48, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
             tvStatus.text = spannable
