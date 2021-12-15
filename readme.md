@@ -6,6 +6,8 @@
 
 **Simple application to enumerate and detect any application that (ab)uses adding an indefinite amount of PhoneAccount(s) to Android's TelecomManager.** As seen on [Android Police](https://www.androidpolice.com/heres-a-way-to-find-out-if-911-calls-on-your-android-phone-might-fail/), [XDA-Developers](https://www.xda-developers.com/avoid-android-emergency-calling-bug-this-app/), [Xataka Android](https://www.xatakandroid.com/aplicaciones-android/descubre-tu-movil-puede-bloquearse-llamando-a-emergencias-esta-app-te-dice).  
 
+Check out the project's amazing landing page [here](https://paad.linuxct.space/), [paad.linuxct.space](https://paad.linuxct.space/).
+
 ## Background
 
 This application exists because malicious or just improperly programmed applications can, intentionally or not, block your device from the ability to call emergency numbers. If you are in such a situation, this app helps you to find the culprit – which you then can uninstall (or disable).  
