@@ -67,3 +67,20 @@ The application is very simple, and contains 2 components:
   <img width="30%" src="https://i.imgur.com/tsKHKTT.png" alt="Normal case"></img><br/>
   Case without any abnormal app behaviour
 </p>
+
+## Build
+
+You can use Android Studio to build the application, or you can build it by using the CLI.  
+
+Navigate to the folder where the source code is located:  
+```cd /path/where/you/downloaded/PhoneAccountDetector/```  
+
+Then, check that Gradle runs properly by executing:  
+For Linux/MacOS: `./gradlew tasks`  
+For Windows: `gradlew tasks`  
+
+You can now build the application in release or debug flavor:   
+`./gradlew assemble`  
+
+After it's done building, you will now need to sign the resulting APK by using apksigner, or jarsigner. Here's an example:  
+```apksigner sign --ks /path/to/example.keystore --ks-pass pass:"EXAMPLEPASSWORD" --v1-signing-enabled true --v2-signing-enabled true --verity-enabled true *.apk```  
