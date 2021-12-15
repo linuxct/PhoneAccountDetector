@@ -87,10 +87,12 @@ class MainActivity : AppCompatActivity() {
     private fun updateViewAsUnsupported() {
         icCheckmark.visibility = View.VISIBLE
         icWarning.visibility = View.INVISIBLE
-        val spannable = SpannableString("Your device is running an old version of Android that is not vulnerable to this bug.")
-        spannable.setSpan(StyleSpan(Typeface.BOLD), 0, 83, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
-        tvStatus.text = spannable
-        tvDetails.text = ""
+        val spannableStatus = SpannableString("Your device is running an old version of Android that is not vulnerable to this bug.")
+        spannableStatus.setSpan(StyleSpan(Typeface.BOLD), 0, spannableStatus.count(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+        tvStatus.text = spannableStatus
+        val spannableDetails = SpannableString("No apps were checked.")
+        spannableDetails.setSpan(StyleSpan(Typeface.ITALIC), 0, spannableDetails.count(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+        tvDetails.text = spannableDetails
     }
 
     @SuppressLint("MissingPermission")
