@@ -29,6 +29,13 @@ No permission is (ab)used to log, collect or process any personally identifiable
   </a>
 </p>
 
+<p align="center">
+  <a href="https://play.google.com/store/apps/details?id=space.linuxct.phoneaccountdetector">
+    <img src="https://i.imgur.com/RvsPBjV.png" alt="Download button"></img><br/>
+    Click here to download from Google Play (usually a few versions behind GitHub, so github is recommended)
+  </a>
+</p>
+
 ## Application usage
 
 The application is very simple, and contains 2 components:
@@ -46,17 +53,17 @@ The application is very simple, and contains 2 components:
 ## Screenshots
 
 <p align="center" width="100%">
-  <img width="30%" src="https://i.imgur.com/ZS7OOIf.png" alt="Permission management"></img><br/>
+  <img width="30%" src="https://i.imgur.com/gDhJHeb.png" alt="Permission management"></img><br/>
   Permissions necessary for the app to work
 </p>
 <br/>
 <p align="center" width="100%">
-  <img width="30%" src="https://i.imgur.com/ptKrgxe.png" alt="Abnormal case"></img><br/>
+  <img width="30%" src="https://i.imgur.com/I4zSf8R.png" alt="Abnormal case"></img><br/>
   Case where Teams added 380 PhoneAccounts to TelecomManager<br/>
   The app flags this as abnormal behaviour<br/>
 </p>
 <br/>
 <p align="center" width="100%">
-  <img width="30%" src="https://i.imgur.com/q6UL0tl.png" alt="Normal case"></img><br/>
+  <img width="30%" src="https://i.imgur.com/tsKHKTT.png" alt="Normal case"></img><br/>
   Case without any abnormal app behaviour
 </p>
