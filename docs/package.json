@@ -1,0 +1,19 @@
+{
+  "name": "paad",
+  "version": "1.0.0",
+  "description": "Simple application to enumerate and detect any application that (ab)uses adding an indefinite amount of PhoneAccount(s) to Android's Telecom Manager",
+  "scripts": {
+    "docs:dev": "vuepress dev docs",
+    "docs:build": "vuepress build docs"
+  },
+  "repository": "git@github.com/linuxct/PhoneAccountDetector.git",
+  "author": "@linuxct",
+  "license": "AGPL-3.0",
+  "private": true,
+  "devDependencies": {
+    "vuepress": "^2.0.0-beta.27"
+  },
+  "dependencies": {
+    "@vuepress/plugin-back-to-top": "^2.0.0-beta.27"
+  }
+}
