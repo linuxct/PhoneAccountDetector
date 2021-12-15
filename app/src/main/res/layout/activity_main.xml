@@ -6,68 +6,114 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
 
-    <TextView
-        android:id="@+id/tvStatus"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.appbar.MaterialToolbar
+                style="?attr/collapsingToolbarLayoutMediumStyle"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/collapsingToolbarLayoutMediumSize"
+                android:id="@+id/topAppBar"
+                app:title="@string/app_name"
+
+                app:titleCentered="true"
+                app:titleTextColor="@color/white"
+                />
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/card"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.02"
-        android:paddingStart="18dp"
-        android:paddingEnd="100dp"
-        />
-
-    <ScrollView
-        android:id="@+id/scrollView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:paddingStart="18dp"
-        android:paddingEnd="18dp">
+        style="?attr/materialCardViewFilledStyle">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/tvDetails"
-                android:layout_width="wrap_content"
+            <!-- Media -->
+            <ImageView
+                android:id="@+id/icCheckmark"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                app:srcCompat="@drawable/ic_checkmark"
+                android:visibility="gone"
+                android:scaleType="fitXY"
+                android:layout_gravity="center_horizontal"
+                />
+
+            <ImageView
+                android:id="@+id/icWarning"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                app:srcCompat="@drawable/ic_warning"
+                android:visibility="gone"
+                android:scaleType="fitXY"
+                android:layout_gravity="center_horizontal"
+
+                />
+
+
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Please relaunch the app." />
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <!-- Title, secondary and supporting text -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tvStatus"
+                    android:lineHeight="33dp"
+                    android:textColor="@color/maintext"
+                    android:paddingHorizontal="8dp"
+                    android:textSize="25dp"
+                    android:textAlignment="center"
+                    android:textAppearance="?attr/textAppearanceTitleMedium" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="18dp"
+                    android:text="Please relaunch the app."
+                    android:id="@+id/tvDetails"
+                    android:textAppearance="?attr/textAppearanceBodyMedium"
+                    android:textColor="?android:attr/textColorSecondary"/>
+
+            </LinearLayout>
         </LinearLayout>
-    </ScrollView>
 
-    <ImageView
-        android:id="@+id/icCheckmark"
-        android:visibility="invisible"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.9"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.025"
-        app:srcCompat="@drawable/ic_checkmark" />
+    </com.google.android.material.card.MaterialCardView>
 
-    <ImageView
-        android:id="@+id/icWarning"
-        android:visibility="invisible"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.9"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.025"
-        app:srcCompat="@drawable/ic_warning" />
+
+
+
+
+
+
+
+
+
+
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

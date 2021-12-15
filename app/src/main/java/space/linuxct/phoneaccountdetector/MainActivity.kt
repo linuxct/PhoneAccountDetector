@@ -122,15 +122,14 @@ class MainActivity : AppCompatActivity() {
 
         if (dangerousAmountOfPhoneAccountsForPackage) {
             icWarning.visibility = View.VISIBLE
-            icCheckmark.visibility = View.INVISIBLE
+            icCheckmark.visibility = View.GONE
             val spannable = SpannableString("At least an application may be abusing the PhoneAccounts bug. Please check below for details.")
             spannable.setSpan(StyleSpan(Typeface.BOLD), 0, 60, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
             tvStatus.text = spannable
         } else {
             icCheckmark.visibility = View.VISIBLE
-            icWarning.visibility = View.INVISIBLE
-            val spannable = SpannableString("No apps abusing the PhoneAccounts bug were found. Please check below for details.")
-            spannable.setSpan(StyleSpan(Typeface.BOLD), 0, 48, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+            icWarning.visibility = View.GONE
+            val spannable = SpannableString("No apps abusing the PhoneAccounts bug were found!")
             tvStatus.text = spannable
         }
 
