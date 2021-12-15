@@ -33,13 +33,10 @@ jobs:
       - name: Install dependencies
         if: steps.yarn-cache.outputs.cache-hit != 'true'
         run: yarn --frozen-lockfile
-        
-      - name: Change to docs directory
-        run: cd docs
 
       # run build script
       - name: Build VuePress site
-        run: yarn docs:build
+        run: cd docs ; yarn docs:build
 
       # please check out the docs of the workflow for more details
       # @see https://github.com/crazy-max/ghaction-github-pages
