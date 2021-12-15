@@ -32,7 +32,7 @@ No permission is (ab)used to log, collect or process any personally identifiable
 <p align="center">
   <a href="https://play.google.com/store/apps/details?id=space.linuxct.phoneaccountdetector">
     <img src="https://i.imgur.com/RvsPBjV.png" alt="Download button"></img><br/>
-    Click here to download from Google Play (usually a few versions behind GitHub, so github is recommended)
+    Click here to download from Google Play<br/>(usually a few versions behind GitHub, so GitHub is recommended)
   </a>
 </p>
 
