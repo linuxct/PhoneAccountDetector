@@ -27,6 +27,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var tvDetails: TextView
     private lateinit var icWarning: ImageView
     private lateinit var icCheckmark: ImageView
+    private var appJustStarted = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,7 +36,20 @@ class MainActivity : AppCompatActivity() {
         tvDetails = findViewById(R.id.tvDetails)
         icWarning = findViewById(R.id.icWarning)
         icCheckmark = findViewById(R.id.icCheckmark)
+        appJustStarted = true
+        performVersionAndPermissionCheckThenUpdateView()
+    }
 
+    override fun onResume(){
+        super.onResume()
+        if (appJustStarted){
+            appJustStarted = !appJustStarted
+            return
+        }
+        performVersionAndPermissionCheckThenUpdateView()
+    }
+
+    private fun performVersionAndPermissionCheckThenUpdateView(){
         if (Build.VERSION.SDK_INT < 31){
             //use ReadPhoneState only
             if (arePermissionsGrantedOrRequest(arrayOf(Manifest.permission.READ_PHONE_STATE))){
