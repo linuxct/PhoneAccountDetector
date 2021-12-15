@@ -2,11 +2,11 @@
   <img src="https://github.com/linuxct/PhoneAccountDetector/blob/main/app/src/main/res/mipmap-xxxhdpi/ic_launcher_round.png?raw=true" alt="logo"></img><br/>
 </p>
 
-# PhoneAccount Abuse Detector<br/> [![Latest Version](https://img.shields.io/github/v/release/linuxct/PhoneAccountDetector)](https://github.com/linuxct/PhoneAccountDetector/releases/latest) ![Compatibility](https://img.shields.io/badge/compat-API%2029%2B-brightgreen)
+# PhoneAccount Abuse Detector (PAAD)<br/> [![Latest Version](https://img.shields.io/github/v/release/linuxct/PhoneAccountDetector)](https://github.com/linuxct/PhoneAccountDetector/releases/latest) ![Compatibility](https://img.shields.io/badge/compat-API%2029%2B-brightgreen)
 
 **Simple application to enumerate and detect any application that (ab)uses adding an indefinite amount of PhoneAccount(s) to Android's TelecomManager.** As seen on [Android Police](https://www.androidpolice.com/heres-a-way-to-find-out-if-911-calls-on-your-android-phone-might-fail/), [XDA-Developers](https://www.xda-developers.com/avoid-android-emergency-calling-bug-this-app/), [Xataka Android](https://www.xatakandroid.com/aplicaciones-android/descubre-tu-movil-puede-bloquearse-llamando-a-emergencias-esta-app-te-dice).  
 
-Check out the project's amazing landing page [here](https://paad.linuxct.space/), [paad.linuxct.space](https://paad.linuxct.space/).
+Check out the project's amazing landing page at [paad.linuxct.space](https://paad.linuxct.space/).
 
 ## Background
 
