@@ -3,7 +3,7 @@ home: true
 heroImage: /images/logo_transparent.png
 actions:
   - text: Get it on GitHub
-    link: https://api.thanki.fi
+    link: https://github.com/linuxct/PhoneAccountDetector
     type: primary
   - text: Get it on Google Play
     link: https://play.google.com/store/apps/details?id=space.linuxct.phoneaccountdetector
