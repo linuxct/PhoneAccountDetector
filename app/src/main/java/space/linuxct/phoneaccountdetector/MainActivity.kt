@@ -11,6 +11,7 @@ import android.os.Bundle
 import android.telecom.PhoneAccountHandle
 import android.telecom.TelecomManager
 import android.text.SpannableString
+import android.text.SpannableStringBuilder
 import android.text.Spanned
 import android.text.style.StyleSpan
 import android.view.View
@@ -86,10 +87,12 @@ class MainActivity : AppCompatActivity() {
     private fun updateViewAsUnsupported() {
         icCheckmark.visibility = View.VISIBLE
         icWarning.visibility = View.INVISIBLE
-        val spannable = SpannableString("Your device is running an old version of Android that is not vulnerable to this bug.")
-        spannable.setSpan(StyleSpan(Typeface.BOLD), 0, 83, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
-        tvStatus.text = spannable
-        tvDetails.text = ""
+        val spannableStatus = SpannableString("Your device is running an old version of Android that is not vulnerable to this bug.")
+        spannableStatus.setSpan(StyleSpan(Typeface.BOLD), 0, spannableStatus.count(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+        tvStatus.text = spannableStatus
+        val spannableDetails = SpannableString("No apps were checked.")
+        spannableDetails.setSpan(StyleSpan(Typeface.ITALIC), 0, spannableDetails.count(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+        tvDetails.text = spannableDetails
     }
 
     @SuppressLint("MissingPermission")
@@ -97,7 +100,7 @@ class MainActivity : AppCompatActivity() {
     private fun checkStatusAndUpdateView(){
         val telecomManager = applicationContext.getSystemService(Context.TELECOM_SERVICE) as TelecomManager
         var dangerousAmountOfPhoneAccountsForPackage = false
-        var resultDetails = ""
+        val resultDetails = SpannableStringBuilder()
         val accountHandleCollection = mutableListOf<PhoneAccountHandle>()
         accountHandleCollection.addAll(telecomManager.callCapablePhoneAccounts)
         accountHandleCollection.addAll(telecomManager.selfManagedPhoneAccounts)
@@ -114,10 +117,12 @@ class MainActivity : AppCompatActivity() {
                 phoneAccountForFirstHandle.label
             }
 
-            resultDetails += "$label: $activePhoneAccountsForPackageName $accountsString\n\n"
+            val spannable = SpannableString("$label: $activePhoneAccountsForPackageName $accountsString\n\n")
             if (activePhoneAccountsForPackageName > 3){
+                spannable.setSpan(StyleSpan(Typeface.BOLD), 0, spannable.count(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
                 dangerousAmountOfPhoneAccountsForPackage = true
             }
+            resultDetails.append(spannable)
         }
 
         if (dangerousAmountOfPhoneAccountsForPackage) {

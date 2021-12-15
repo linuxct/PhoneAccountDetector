@@ -99,21 +99,21 @@
                     app:cardBackgroundColor="@color/bg"
                     app:layout_constraintBottom_toBottomOf="parent">
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                  <LinearLayout
+                      android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:orientation="vertical">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:padding="12dp"
-                    android:text="Please relaunch the app."
-                    android:id="@+id/tvDetails"
-                    android:textAppearance="?attr/textAppearanceBodyMedium"
-                    android:textColor="?android:attr/textColorSecondary"/>
-                </LinearLayout>
-
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="12dp"
+                        android:text="Please relaunch the app."
+                        android:id="@+id/tvDetails"
+                        android:textAppearance="?attr/textAppearanceBodyMedium"
+                        android:textColor="@color/maintext"/>
+                  </LinearLayout>
+                    
                 </com.google.android.material.card.MaterialCardView>
 
             </LinearLayout>
