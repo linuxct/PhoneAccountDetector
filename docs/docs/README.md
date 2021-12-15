@@ -11,9 +11,6 @@ actions:
   - text: Get it on F-Droid
     link: https://apt.izzysoft.de/fdroid/index/apk/space.linuxct.phoneaccountdetector
     type: primary
-  - text: Check out the Guide
-    link: https://paad.linuxct.space/guide/
-    type: primary
 features:
   - title: Free as in speech
     details: PhoneAccount Abuse Detector is completely free and open source. Check out the source code, make contributions and be safe.
