@@ -59,7 +59,7 @@ The application is very simple, and contains 2 components:
 <br/>
 <p align="center" width="100%">
   <img width="30%" src="https://i.imgur.com/I4zSf8R.png" alt="Abnormal case"></img><br/>
-  Case where Teams added 380 PhoneAccounts to TelecomManager<br/>
+  Case where Teams added 4 PhoneAccounts to TelecomManager<br/>
   The app flags this as abnormal behaviour<br/>
 </p>
 <br/>
