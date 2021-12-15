@@ -138,7 +138,7 @@ class MainActivity : AppCompatActivity() {
             tvStatus.text = spannable
         }
 
-        tvDetails.text = resultDetails
+        tvDetails.text = resultDetails.removeSuffix("\n\n")
     }
 
 
