@@ -14,7 +14,7 @@ actions:
 features:
   - title: Free as in speech
     details: PhoneAccount Abuse Detector is completely free and open source. Check out the source code, make contributions and be safe.
-  - title: Priacy friendly
+  - title: Privacy friendly
     details: No permissions are (ab)used to log, collect or process any personally identifable user information. Check out the guide for more info :)
   - title: Straightforward
     details: PhoneAccount Abuse Detector is available for Android 6.0+ devices and it's dead simple to use, no hidden options & no-nonsense.
