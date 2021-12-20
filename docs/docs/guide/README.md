@@ -23,15 +23,14 @@ The application is very simple, and contains 2 components:
 - A message at the top of the device, explaining if the application detected a possible abuse of this functionality which may cause issues while attempting to call Emergency Services.  
 - A list of the applications that have registered a Phone Account in your device, usually including your own SIM Cards, Google Duo, Teams, among others. Alongside each app, the number of accounts is displayed to facilitate the identification of the malfunctioning/hijacking application.  
 
-
 Check this video if you have doubts on how to interpret this data:
-<p align="center">
-  <a target="_blank" href="https://www.youtube.com/embed/MT9Xs01Zwa0?ecver=1&autoplay=1&cc_load_policy=1&iv_load_policy=3&rel=0&yt:stretch=16:9&autohide=1&color=red">
-    <img src="https://i.imgur.com/IJYA3oo.png" alt="Watch on YouTube" />
-  </a><br/>
 
-> (Thanks to <a href="https://www.youtube.com/c/AndroidExplainedTips">Explaining Android</a> for the video)
+<p align="center">
+  <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/MT9Xs01Zwa0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+  </iframe>
 </p>
+
+> (Thanks to [Explaining Android](https://www.youtube.com/c/AndroidExplainedTips) for the video)
 
 ## Screenshots
 
