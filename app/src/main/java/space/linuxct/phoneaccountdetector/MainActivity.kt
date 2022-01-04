@@ -1,9 +1,12 @@
 package space.linuxct.phoneaccountdetector
 
 import android.Manifest
+import android.animation.ObjectAnimator
+import android.animation.ValueAnimator
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.pm.PackageManager
+import android.graphics.Color
 import android.graphics.Typeface
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
@@ -19,8 +22,12 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.annotation.RequiresApi
+import androidx.core.animation.doOnEnd
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import java.text.SimpleDateFormat
+import java.time.LocalDate
+import java.util.*
 
 class MainActivity : AppCompatActivity() {
     private lateinit var tvStatus: TextView
@@ -28,6 +35,8 @@ class MainActivity : AppCompatActivity() {
     private lateinit var icWarning: ImageView
     private lateinit var icCheckmark: ImageView
     private var appJustStarted = false
+    private var tapsCount = 0
+    private var animationIsPlaying = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,6 +47,9 @@ class MainActivity : AppCompatActivity() {
         icCheckmark = findViewById(R.id.icCheckmark)
         appJustStarted = true
         performVersionAndPermissionCheckThenUpdateView()
+        icCheckmark.setOnClickListener {
+            evaluateEasterEgg()
+        }
     }
 
     override fun onResume(){
@@ -90,6 +102,23 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    private fun evaluateEasterEgg() {
+        if (tapsCount == 5 && !animationIsPlaying){
+            animationIsPlaying = true
+            val animation = ObjectAnimator.ofArgb(icCheckmark, "colorFilter", getColor(R.color.checkmark), Color.GREEN, Color.RED, Color.BLUE, Color.RED, Color.GREEN)
+            animation.duration = 8000
+            animation.repeatCount = 1
+            animation.repeatMode = ValueAnimator.REVERSE //restart
+            animation.doOnEnd {
+                tapsCount = 0
+                animationIsPlaying = false
+            }
+            animation.start()
+            return
+        }
+        tapsCount += 1
+    }
+
     private fun isAndroidVersionUnsupportedOrCheckStatusAndUpdateView(){
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.P){
             updateViewAsUnsupported()
@@ -109,9 +138,29 @@ class MainActivity : AppCompatActivity() {
         tvDetails.text = spannableDetails
     }
 
-    @SuppressLint("MissingPermission")
+    @RequiresApi(Build.VERSION_CODES.P)
+    private fun deviceIsUpdated(): Boolean {
+        // Due to OnePlus devices not supporting Key Attestation when unlocked,
+        // this will rely on checking Build.VERSION.SECURITY_PATCH's value.
+        val ld: LocalDate = LocalDate.parse(Build.VERSION.SECURITY_PATCH)
+        return ld.year > 2022 || (ld.year == 2022 && ld.monthValue >= 1)
+    }
+
+    @SuppressLint("MissingPermission", "SetTextI18n")
     @RequiresApi(Build.VERSION_CODES.P)
     private fun checkStatusAndUpdateView(){
+        if (deviceIsUpdated()){
+            icCheckmark.visibility = View.VISIBLE
+            icWarning.visibility = View.GONE
+            val spannable = SpannableString("Your device is running a security patch from January 2022 or newer. It should not be vulnerable to this bug!")
+            spannable.setSpan(StyleSpan(Typeface.BOLD), 68, spannable.count(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+            tvStatus.text = spannable
+            val spannableDetails = SpannableString("No apps were checked.")
+            spannableDetails.setSpan(StyleSpan(Typeface.ITALIC), 0, spannableDetails.count(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+            tvDetails.text = spannableDetails
+            return
+        }
+
         val telecomManager = applicationContext.getSystemService(Context.TELECOM_SERVICE) as TelecomManager
         var dangerousAmountOfPhoneAccountsForPackage = false
         val resultDetails = SpannableStringBuilder()
@@ -154,6 +203,4 @@ class MainActivity : AppCompatActivity() {
 
         tvDetails.text = resultDetails.removeSuffix("\n\n")
     }
-
-
 }
