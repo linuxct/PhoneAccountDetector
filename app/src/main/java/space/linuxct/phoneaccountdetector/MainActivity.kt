@@ -25,7 +25,6 @@ import androidx.annotation.RequiresApi
 import androidx.core.animation.doOnEnd
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import java.text.SimpleDateFormat
 import java.time.LocalDate
 import java.util.*
 
