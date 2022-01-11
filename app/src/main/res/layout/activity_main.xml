@@ -87,7 +87,8 @@
                         android:paddingHorizontal="8dp"
                         android:textSize="25dp"
                         android:textAlignment="center"
-                        android:textAppearance="?attr/textAppearanceTitleMedium" />
+                        android:textAppearance="?attr/textAppearanceTitleMedium"
+                        android:layout_gravity="center"/>
 
                     <com.google.android.material.card.MaterialCardView
                         android:id="@+id/card2"
