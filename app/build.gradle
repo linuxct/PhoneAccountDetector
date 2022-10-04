@@ -4,14 +4,14 @@ plugins {
 }
 
 android {
-    compileSdk 31
+    compileSdk 33
 
     defaultConfig {
         applicationId "space.linuxct.phoneaccountdetector"
         minSdk 23
-        targetSdk 31
-        versionCode 4
-        versionName "3.0"
+        targetSdk 33
+        versionCode 5
+        versionName "3.1"
     }
 
     buildTypes {
@@ -27,11 +27,12 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+    namespace 'space.linuxct.phoneaccountdetector'
 }
 
 dependencies {
-    implementation 'androidx.core:core-ktx:1.7.0'
-    implementation 'androidx.appcompat:appcompat:1.4.0'
-    implementation 'com.google.android.material:material:1.6.0-alpha01'
-    implementation 'androidx.constraintlayout:constraintlayout:2.1.2'
+    implementation 'androidx.core:core-ktx:1.9.0'
+    implementation 'androidx.appcompat:appcompat:1.5.1'
+    implementation 'com.google.android.material:material:1.8.0-alpha01'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
 }

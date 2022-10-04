@@ -11,6 +11,8 @@ import android.graphics.Typeface
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.telecom.PhoneAccountHandle
 import android.telecom.TelecomManager
 import android.text.SpannableString
@@ -18,7 +20,10 @@ import android.text.SpannableStringBuilder
 import android.text.Spanned
 import android.text.style.StyleSpan
 import android.view.View
+import android.widget.Button
 import android.widget.ImageView
+import android.widget.LinearLayout
+import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
 import androidx.annotation.RequiresApi
@@ -29,10 +34,14 @@ import java.time.LocalDate
 import java.util.*
 
 class MainActivity : AppCompatActivity() {
+    private lateinit var mainLayout: LinearLayout
+    private lateinit var progressBar: ProgressBar
     private lateinit var tvStatus: TextView
     private lateinit var tvDetails: TextView
     private lateinit var icWarning: ImageView
     private lateinit var icCheckmark: ImageView
+    private lateinit var btnForceCheck: Button
+    private lateinit var deviceSecurityPatch: String
     private var appJustStarted = false
     private var tapsCount = 0
     private var animationIsPlaying = false
@@ -40,10 +49,14 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        mainLayout = findViewById(R.id.contentLayout)
+        progressBar = findViewById(R.id.progressBar)
         tvStatus = findViewById(R.id.tvStatus)
         tvDetails = findViewById(R.id.tvDetails)
         icWarning = findViewById(R.id.icWarning)
         icCheckmark = findViewById(R.id.icCheckmark)
+        btnForceCheck = findViewById(R.id.btnForceCheck)
+        deviceSecurityPatch = Build.VERSION.SECURITY_PATCH
         appJustStarted = true
         performVersionAndPermissionCheckThenUpdateView()
         icCheckmark.setOnClickListener {
@@ -119,6 +132,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun isAndroidVersionUnsupportedOrCheckStatusAndUpdateView(){
+        progressBar.visibility = View.GONE
+        mainLayout.visibility = View.VISIBLE
+
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.P){
             updateViewAsUnsupported()
         } else {
@@ -141,7 +157,7 @@ class MainActivity : AppCompatActivity() {
     private fun deviceIsUpdated(): Boolean {
         // Due to OnePlus devices not supporting Key Attestation when unlocked,
         // this will rely on checking Build.VERSION.SECURITY_PATCH's value.
-        val ld: LocalDate = LocalDate.parse(Build.VERSION.SECURITY_PATCH)
+        val ld: LocalDate = LocalDate.parse(deviceSecurityPatch)
         return ld.year > 2022 || (ld.year == 2022 && ld.monthValue >= 1)
     }
 
@@ -149,14 +165,7 @@ class MainActivity : AppCompatActivity() {
     @RequiresApi(Build.VERSION_CODES.P)
     private fun checkStatusAndUpdateView(){
         if (deviceIsUpdated()){
-            icCheckmark.visibility = View.VISIBLE
-            icWarning.visibility = View.GONE
-            val spannable = SpannableString("Your device is running a security patch from January 2022 or newer. It should not be vulnerable to this bug!")
-            spannable.setSpan(StyleSpan(Typeface.BOLD), 68, spannable.count(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
-            tvStatus.text = spannable
-            val spannableDetails = SpannableString("No apps were checked.")
-            spannableDetails.setSpan(StyleSpan(Typeface.ITALIC), 0, spannableDetails.count(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
-            tvDetails.text = spannableDetails
+            onDeviceUpdatedImpl()
             return
         }
 
@@ -201,5 +210,27 @@ class MainActivity : AppCompatActivity() {
         }
 
         tvDetails.text = resultDetails.removeSuffix("\n\n")
+    }
+
+    private fun onDeviceUpdatedImpl(){
+        btnForceCheck.visibility = View.VISIBLE
+        btnForceCheck.setOnClickListener {
+            progressBar.visibility = View.VISIBLE
+            mainLayout.visibility = View.INVISIBLE
+            deviceSecurityPatch = "2020-01-01"
+            btnForceCheck.visibility = View.GONE
+
+            // Added for visual feedback
+            Handler(Looper.getMainLooper())
+                .postDelayed( { isAndroidVersionUnsupportedOrCheckStatusAndUpdateView() }, 750)
+        }
+        icCheckmark.visibility = View.VISIBLE
+        icWarning.visibility = View.GONE
+        val spannable = SpannableString("Your device is running a security patch from January 2022 or newer. It should not be vulnerable to this bug!")
+        spannable.setSpan(StyleSpan(Typeface.BOLD), 68, spannable.count(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+        tvStatus.text = spannable
+        val spannableDetails = SpannableString("No apps were checked.")
+        spannableDetails.setSpan(StyleSpan(Typeface.ITALIC), 0, spannableDetails.count(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+        tvDetails.text = spannableDetails
     }
 }

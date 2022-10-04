@@ -7,6 +7,7 @@
     tools:context=".MainActivity">
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:id="@+id/coordinatorLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -15,62 +16,77 @@
             android:layout_height="wrap_content">
 
             <com.google.android.material.appbar.MaterialToolbar
+                android:id="@+id/topAppBar"
                 style="?attr/collapsingToolbarLayoutMediumStyle"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/collapsingToolbarLayoutMediumSize"
-                android:id="@+id/topAppBar"
+                app:layout_constraintHeight_percent="0.2"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:title="@string/app_name"
                 app:titleCentered="true"
-                app:titleTextColor="@color/white"
-                app:layout_constraintHeight_percent="0.2"
-                app:layout_constraintHorizontal_bias="0.0" />
+                app:titleTextColor="@color/white" />
 
         </com.google.android.material.appbar.AppBarLayout>
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:translationZ="1dp"
+        android:theme="@style/Theme.PhoneAccountDetector"
+        app:layout_constraintBottom_toBottomOf="@+id/coordinatorLayout"
+        app:layout_constraintEnd_toEndOf="@+id/coordinatorLayout"
+        app:layout_constraintStart_toStartOf="@+id/coordinatorLayout"
+        app:layout_constraintTop_toTopOf="@+id/coordinatorLayout" />
+
     <androidx.core.widget.NestedScrollView
+        android:id="@+id/nestedScrollView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@id/topAppBar"
         app:layout_constraintTop_toTopOf="@id/topAppBar"
-        app:layout_constraintBottom_toBottomOf="parent"
         tools:ignore="MissingConstraints,NotSibling">
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/card"
+            style="?attr/materialCardViewFilledStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@id/topAppBar"
             app:layout_constraintTop_toTopOf="@id/topAppBar"
-            app:layout_constraintBottom_toBottomOf="parent"
-            style="?attr/materialCardViewFilledStyle"
             tools:ignore="NotSibling">
 
             <LinearLayout
+                android:id="@+id/contentLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:visibility="invisible">
 
                 <ImageView
                     android:id="@+id/icCheckmark"
                     android:layout_width="200dp"
                     android:layout_height="200dp"
-                    app:srcCompat="@drawable/ic_checkmark"
-                    android:visibility="gone"
+                    android:layout_gravity="center_horizontal"
                     android:scaleType="fitXY"
-                    android:layout_gravity="center_horizontal" />
+                    android:visibility="gone"
+                    app:srcCompat="@drawable/ic_checkmark" />
 
                 <ImageView
                     android:id="@+id/icWarning"
                     android:layout_width="200dp"
                     android:layout_height="200dp"
-                    app:srcCompat="@drawable/ic_warning"
-                    android:visibility="gone"
+                    android:layout_gravity="center_horizontal"
                     android:scaleType="fitXY"
-                    android:layout_gravity="center_horizontal" />
+                    android:visibility="invisible"
+                    app:srcCompat="@drawable/ic_warning" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -79,23 +95,37 @@
                     android:padding="16dp">
 
                     <TextView
+                        android:id="@+id/tvStatus"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/tvStatus"
+                        android:layout_gravity="center"
                         android:lineHeight="33dp"
-                        android:textColor="@color/maintext"
                         android:paddingHorizontal="8dp"
-                        android:textSize="25dp"
                         android:textAlignment="center"
                         android:textAppearance="?attr/textAppearanceTitleMedium"
-                        android:layout_gravity="center"/>
+                        android:textColor="@color/maintext"
+                        android:textSize="25dp" />
+
+                    <Button
+                        android:id="@+id/btnForceCheck"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="25dp"
+                        android:backgroundTint="@color/checkmark"
+                        android:text="Force check"
+                        android:textAlignment="center"
+                        android:textAppearance="?attr/textAppearanceTitleMedium"
+                        android:textColor="@color/bg"
+                        android:textSize="25dp"
+                        android:visibility="gone" />
 
                     <com.google.android.material.card.MaterialCardView
                         android:id="@+id/card2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="160dp"
                         android:layout_marginHorizontal="10dp"
+                        android:layout_marginTop="160dp"
                         app:cardBackgroundColor="@color/bg"
                         app:layout_constraintBottom_toBottomOf="parent">
 
@@ -105,13 +135,13 @@
                             android:orientation="vertical">
 
                             <TextView
+                                android:id="@+id/tvDetails"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:padding="12dp"
                                 android:text="Please relaunch the app."
-                                android:id="@+id/tvDetails"
                                 android:textAppearance="?attr/textAppearanceBodyMedium"
-                                android:textColor="@color/maintext"/>
+                                android:textColor="@color/maintext" />
                         </LinearLayout>
 
                     </com.google.android.material.card.MaterialCardView>
